@@ -9,13 +9,13 @@ export const fetchDataOnServer = async ({url, id}: { url: string; id?: string | 
         const res = await fetch(finalUrl, {headers: headers()});
 
         if (!res.ok) {
-            throw new Error(res.statusText);
+            throw new Error(await res.text());
         }
 
         const data = await res.json();
         return {data, error: null};
     } catch (error) {
-        console.error('Error in fetchData', {url, error});
+        console.error('Error in fetchDataOnServer', {url, error});
         throw error;
     }
 };
