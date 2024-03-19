@@ -1,4 +1,4 @@
-import {fetchDataOnServer} from "@/lib/serverUtils";
+import {fetchDataOnServer, fetchDataOnServerWORKAROUND} from "@/lib/serverUtils";
 
 export async function getData() {
     try {
@@ -9,7 +9,21 @@ export async function getData() {
             data: data,
             error: undefined,
         };
-        // return await fetch('http://localhost:3000/api/test');
+    } catch (error: any) {
+        console.log(error);
+        return {data: [], error: error.message || 'Unknown error'};
+    }
+}
+
+export async function getDataWORKAROUND() {
+    try {
+        const {data} = await fetchDataOnServerWORKAROUND({
+            url: `/api/test`,
+        });
+        return {
+            data: data,
+            error: undefined,
+        };
     } catch (error: any) {
         console.log(error);
         return {data: [], error: error.message || 'Unknown error'};
