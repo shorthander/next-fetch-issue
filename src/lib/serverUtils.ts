@@ -6,7 +6,8 @@ export const fetchDataOnServer = async ({url, id}: { url: string; id?: string | 
     try {
         const finalUrl = buildUrl(url, id);
         console.log(finalUrl)
-        const res = await fetch(finalUrl, {headers: headers()});
+        // const res = await fetch(finalUrl, {headers: headers()});
+        const res = await fetch(finalUrl, {headers: new Headers(headers())});
 
         if (!res.ok) {
             throw new Error(await res.text());
